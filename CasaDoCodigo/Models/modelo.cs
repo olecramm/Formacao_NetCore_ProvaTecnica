@@ -18,9 +18,10 @@ namespace CasaDoCodigo.Models
     {
         public Produto()
         {
-
         }
 
+        [Required]
+        public Categoria Categoria { get; private set; }
         [Required]
         public string Codigo { get; private set; }
         [Required]
@@ -28,8 +29,9 @@ namespace CasaDoCodigo.Models
         [Required]
         public decimal Preco { get; private set; }
 
-        public Produto(string codigo, string nome, decimal preco)
+        public Produto(string codigo, string nome, decimal preco, string categoria)
         {
+            this.Categoria = categoria;
             this.Codigo = codigo;
             this.Nome = nome;
             this.Preco = preco;
@@ -43,24 +45,33 @@ namespace CasaDoCodigo.Models
         }
 
         public virtual Pedido Pedido { get; set; }
+
         [MinLength(5, ErrorMessage = "Nome deve ter no mínimo 5 caracteres")]
         [MaxLength(50, ErrorMessage = "Nome deve ter no máximo 50 caracteres")]
         [Required(ErrorMessage = "Nome é obrigatório")]
         public string Nome { get; set; } = "";
+
         [Required(ErrorMessage = "Email é obrigatório")]
         public string Email { get; set; } = "";
+
         [Required(ErrorMessage = "Telefone é obrigatório")]
         public string Telefone { get; set; } = "";
+
         [Required(ErrorMessage = "Endereco é obrigatório")]
         public string Endereco { get; set; } = "";
+
         [Required(ErrorMessage = "Complemento é obrigatório")]
         public string Complemento { get; set; } = "";
+
         [Required(ErrorMessage = "Bairro é obrigatório")]
         public string Bairro { get; set; } = "";
+
         [Required(ErrorMessage = "Municipio é obrigatório")]
         public string Municipio { get; set; } = "";
+
         [Required(ErrorMessage = "UF é obrigatório")]
         public string UF { get; set; } = "";
+
         [Required(ErrorMessage = "CEP é obrigatório")]
         public string CEP { get; set; } = "";
 
@@ -130,5 +141,19 @@ namespace CasaDoCodigo.Models
         public List<ItemPedido> Itens { get; private set; } = new List<ItemPedido>();
         [Required]
         public virtual Cadastro Cadastro { get; private set; }
+    }
+
+    public class Categoria : BaseModel
+    {
+        public Categoria()
+        {
+        }
+
+        public string Nome { get; private set; }
+
+        public void Adiciona(string nomeCategoria)
+        {
+            this.Nome = nomeCategoria;
+        }
     }
 }

@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190409000354_Add-Migration.cs" />
+    <Compile Remove="Migrations\20190409000354_Add-Migration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="middlewares.png" />
     <None Remove="pipeline.png" />
   </ItemGroup>
